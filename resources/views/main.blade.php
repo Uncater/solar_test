@@ -286,6 +286,8 @@
             content.find('.comment-block').hide().after(editSection);
         });
         $(document).on('click', '.add-btn', function() {
+            var btn = $(this);
+            btn.prop('disabled', true);
             var textarea = $(this).parent().find('textarea');
             var text = textarea.val();
             if (text) {
@@ -308,6 +310,9 @@
                 })
                 .fail(function() {
                     alert( "Error leaving comment" );
+                })
+                .always(function() {
+                    btn.prop('disabled', false);
                 });
             }
         });
